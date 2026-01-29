@@ -165,7 +165,7 @@ def _format_args_as_multiline(tokens: list[str], indent: str = "    ") -> str:
     for idx, tok in enumerate(tokens):
         tok_escaped = _escape_py_string_fragment(tok)
         # Add \n to all but last token (makes paste-friendly arg string)
-        suffix = r"\n" if idx < len(tokens) - 1 else ""
+        suffix = r"\n " if idx < len(tokens) - 1 else ""
         lines.append(f'"{tok_escaped}{suffix}"')
 
     if len(lines) == 1:
@@ -177,7 +177,7 @@ def _format_args_as_multiline(tokens: list[str], indent: str = "    ") -> str:
 
 def convert_ijm_to_py(ijm_text: str) -> str:
     out = []
-    out.append("#@ String (label='(Optional) Note') _note\n")
+    out.append("#@String \n")
     out.append("from ij import IJ\n\n")
 
     for raw_line in ijm_text.splitlines():
